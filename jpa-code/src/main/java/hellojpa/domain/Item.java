@@ -1,12 +1,12 @@
 package hellojpa.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
-public class Item {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE) // 단일 테이블에 전부 들어감 (null 허용)
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE) -> 테이블 여러개 생성
+@DiscriminatorColumn
+public abstract class Item {
 
     @Id @GeneratedValue
     @Column(name = "ITEM_ID")
