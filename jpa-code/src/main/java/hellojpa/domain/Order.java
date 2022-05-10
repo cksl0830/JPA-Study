@@ -13,15 +13,15 @@ public class Order {
     @Column(name = "OREDE_ID")
     private Long id;
 
-    @ManyToOne // FK 부분에 연관관계 주인 정하기 -> 값 수정, 등록 가능 
+    @ManyToOne(fetch = FetchType.LAZY) // FK 부분에 연관관계 주인 정하기 -> 값 수정, 등록 가능
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL) // 자동으로 배송정보 생성
     @JoinColumn(name = "DELIVERY_ID")
     private Delivery delivery;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL) // 자동으로 주문아이템 생성
     private List<OrderItem> orderItems = new ArrayList<>();
 
     private LocalDateTime orderDate;

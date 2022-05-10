@@ -9,11 +9,11 @@ public class OrderItem {
     @Column(name = "ORDER_ITEM_ID")
     private Long id;
 
-    @ManyToOne  //FK 부분에 연관관계 주인 정하기 -> 값 수정, 등록 가능
+    @ManyToOne(fetch = FetchType.LAZY)  //FK 부분에 연관관계 주인 정하기 -> 값 수정, 등록 가능
     @JoinColumn(name = "ORDER_ID")
     private Order order;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)  // 지연로딩 설정!
     @JoinColumn(name = "ITEM_ID")
     private Item item;
 

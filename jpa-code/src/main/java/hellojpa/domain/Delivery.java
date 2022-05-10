@@ -12,4 +12,7 @@ public class Delivery {
     private String street;
     private String zipcode;
     private DeliveryStatus status;
+
+    @OneToOne(mappedBy = "delivery", fetch = FetchType.LAZY)
+    private Order order;
 }
